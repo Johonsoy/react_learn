@@ -1,0 +1,42 @@
+<head>
+    <meta charset="utf-8">
+    <title>函数式组件</title>
+</head>
+
+<body>
+<div id="test">
+</div>
+
+<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/18.2.0/umd/react.production.min.js" ></script>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/babel-standalone/6.26.0/babel.min.js" ></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+<script type="text/babel">
+    class Demo extends React.Component {
+        showData = ()=> {
+            const {input1} = this
+            alert(input1.value)
+        }
+
+        whenBlur = () => {
+            const {input2} = this
+            alert(input2.value)
+        }
+        render() {
+            return (
+                <div>
+                    <label>
+                        <input type="text" placeholder="点击按钮提示数据" ref={c => this.input1 = c} />
+                    </label>&nbsp;
+                    <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
+                    <label>
+                        <input type="text" onBlur={this.whenBlur} placeholder="失去焦点提示数据" ref={c => this.input2 = c} />
+                    </label>&nbsp;
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById("test"))
+</script>
+</body>
