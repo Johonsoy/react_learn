@@ -22,12 +22,16 @@
         changeWeather = () => {
             this.setState({isHot: !this.state.isHot})
         }
+        saveInput = (c) => {
+            this.input1 = c
+            console.log('@', c)
+        }
         render() {
             const isHot = !this.state.isHot
             return (
                 <div>
                     <label>
-                        <input type="text" placeholder="点击按钮提示数据" ref={c => this.input1 = c} />
+                        <input type="text" placeholder="点击按钮提示数据" ref={this.saveInput} />
                     </label>&nbsp;
                     <label>
                         <h1>今天天气很{isHot ? '炎热':'凉爽'}</h1>
