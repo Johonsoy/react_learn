@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>函数式组件</title>
+    <title>none_controller_component</title>
 </head>
 
 <body>
@@ -12,45 +12,26 @@
 <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/babel-standalone/6.26.0/babel.min.js" ></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
 <script type="text/babel">
-
-    class Demo extends React.Component {
-        /**
-         * 1. 事件委托形式
-         *
-         *
-         *
-         * @type {*}
-         */
-        my_ref = React.createRef()
-
-        showData = ()=> {
-            alert(this.my_ref.current.value)
-        }
-
-        whenBlur = () => {
-            const {input2} = this
-            alert(input2.value)
-        }
+    class MyComponent extends React.Component {
         render() {
             return (
-                <div>
+                <form onSubmit={this.handleSubmit}>
                     <label>
-                        <input type="text" placeholder="点击按钮提示数据" ref={this.my_ref} />
-                    </label>&nbsp;
-                    <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
-                    <label>
-                        <input type="text" onBlur={this.whenBlur} placeholder="失去焦点提示数据" ref={c => this.input2 = c} />
-                    </label>&nbsp;
-                    <button onClick={this.showData2}>点我提示数据</button>&nbsp;
-                </div>
+                    用户名：
+                    <input ref = {c => this.username = c} type="text" name="username" />
+                    密码：<input ref = {c => this.password = c} type="password" name="password"/>
+                    </label>
+                    <button>登录</button>
+                </form>
             )
         }
 
-        showData2 = (event)=> {
-            console.log(event.target.value)
+        handleSubmit = (event) => {
+            event.preventDefault()
+            const {username, password} = this
+            alert(username.value, password.value)
         }
     }
-
-    ReactDOM.render(<Demo />, document.getElementById("test"))
+    ReactDOM.render(<MyComponent />, document.getElementById("test"))
 </script>
 </body>
