@@ -1,0 +1,53 @@
+<head>
+    <meta charset="utf-8">
+    <title>none_controller_component</title>
+</head>
+
+<body>
+<div id="test">
+</div>
+
+<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+<script type="text/babel">
+    class MyComponent extends React.Component {
+        state = {
+            opacity: 2
+        }
+
+        componentDidMount() {
+            this.timer = setInterval(() => {
+                let {opacity} = this.state
+                if (opacity <= 0) {
+                    opacity = 2
+                } else {
+                    opacity -= 0.1
+                }
+                this.setState({
+                    opacity: opacity
+                })
+            }, 200)
+            console.log(this)
+        }
+
+        render() {
+
+            return (
+                <div>
+                    <h2 style={{opacity: this.state.opacity}}>react学不会怎么办</h2>
+                    <button onClick={this.unmount}>不活了</button>
+                </div>
+            )
+        }
+
+        unmount = () => {
+            clearInterval(this.timer)
+            ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+        }
+    }
+
+    ReactDOM.render(<MyComponent/>, document.getElementById("test"))
+</script>
+</body>
