@@ -22,26 +22,22 @@
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         用户名：
-                        <input onChange={this.usernameChange}  type="text" name="username" />
-                        密码：<input onChange={this.passwordChange} type="password" name="password"/>
+                        <input onChange={event => this.save('username', event)}  type="text" name="username" />
+                        密码：<input onChange={event => this.save('password', event)} type="password" name="password"/>
                     </label>
                     <button>登录</button>
                 </form>
             )
         }
-
         handleSubmit = (event) => {
             event.preventDefault()
-            alert(this.state.username + this.state.password)
+            const {username, password} = this.state
+            alert(username + ' ' + password)
         }
-
-        usernameChange = (event) => {
-            this.setState({username: event.target.value})
-        }
-
-
-        passwordChange = (event) =>  {
-            this.setState({password: event.target.value})
+        save = (type, event) => {
+                this.setState({
+                    [type]: event.target.value,
+            })
         }
     }
     ReactDOM.render(<MyComponent />, document.getElementById("test"))
