@@ -23,30 +23,36 @@
             count: 0,
             car: 'Bench'
         }
+
         componentDidMount() {
             console.log("componentDidMount")
         }
+
         componentWillMount() {
             console.log("componentWillMount")
         }
+
         componentWillReceiveProps(nextProps) {
             console.log("componentWillReceiveProps")
             super.componentWillReceiveProps(nextProps)
         }
+
         shouldComponentUpdate(nextProps, nextState) {
             console.log("shouldComponentUpdate")
             return true
         }
+
         componentWillUpdate(nextProps, nextState) {
             console.log("componentWillUpdate")
         }
+
         render() {
             console.log("render")
             return (
                 <div>
                     <h2>我是A组件</h2>
                     <button onClick={() => this.setState({car: 'auto'})}>点击换车</button>
-                    <ChildComponent carName = {this.state.car} />
+                    <ChildComponent carName={this.state.car}/>
                 </div>
             )
         }
