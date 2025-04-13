@@ -1,0 +1,71 @@
+<head>
+    <meta charset="utf-8">
+    <title>none_controller_component</title>
+</head>
+
+<body>
+<div id="test">
+</div>
+
+<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+<script type="text/babel">
+    class MyComponent extends React.Component {
+
+        constructor(props) {
+            console.log("component initialized")
+            super(props);
+        }
+
+        state = {
+            count: 0,
+            car: 'Bench'
+        }
+        componentDidMount() {
+            console.log("componentDidMount")
+        }
+        componentWillMount() {
+            console.log("componentWillMount")
+        }
+        componentWillReceiveProps(nextProps) {
+            console.log("componentWillReceiveProps")
+            super.componentWillReceiveProps(nextProps)
+        }
+        shouldComponentUpdate(nextProps, nextState) {
+            console.log("shouldComponentUpdate")
+            return true
+        }
+        componentWillUpdate(nextProps, nextState) {
+            console.log("componentWillUpdate")
+        }
+        render() {
+            console.log("render")
+            return (
+                <div>
+                    <h2>我是A组件</h2>
+                    <button onClick={() => this.setState({car: 'auto'})}>点击换车</button>
+                    <ChildComponent carName = {this.state.car} />
+                </div>
+            )
+        }
+
+        plus = () => {
+            this.setState({count: this.state.count + 1})
+        }
+    }
+
+    class ChildComponent extends React.Component {
+        render() {
+            return (
+                <div>
+                    <h2>我是b组件我接受到的车是{this.props.carName}</h2>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<MyComponent/>, document.getElementById("test"))
+</script>
+</body>
