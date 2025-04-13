@@ -46,7 +46,8 @@ class TodoList extends Component {
 
     }
 
-    handleAddTodo = () => {
+    handleAddTodo = (event) => {
+        event.preventDefault();
 
     }
 

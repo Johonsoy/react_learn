@@ -1,17 +1,31 @@
 import React, {Component} from 'react';
 
 class TodoItem extends Component {
-
-    handleEditSubmit = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isEditing: false,
+            editText: props.todo.text,
+        }
+    }
+    handleEditSubmit = (event) => {
+        event.preventDefault()
+        if (this.state.editText === '') {
+            return
+        }
+        this.props.onEdit(this.props.todo.id, this.state.editText)
+        this.setState({isEditing: false})
 
     }
 
     handleEditToggle = () => {
-
+        this.setState((preState) => ({
+            isEditing: !preState.isEditing,
+        }))
     }
 
-    handleEditChange = () => {
-
+    handleEditChange = (event) => {
+        this.setState({editText: event.target.value})
     }
 
     render() {
