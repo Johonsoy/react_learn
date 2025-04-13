@@ -43,29 +43,48 @@ class TodoList extends Component {
         );
     }
 
-    handleEditTodo = () => {
+    handleEditTodo = (id, newText) => {
+        this.setState((prevState) => ({
+            todos: prevState.todos.map((todo) => {
+                todo.id === id ? {...todo, text: newText} : todo
+            })
+        }))
     }
 
 
-    handleToggleTodo = () => {
+    handleToggleTodo = (id) => {
+        this.setState((pre) => ({
+            todos: pre.todos.map((todo) => {
+                todo.id === id ? {...todo, completed: !todo.completed} : todo
+            })
+        }))
     }
 
 
-    handleDeleteTodo = () => {
-
+    handleDeleteTodo = (id) => {
+        this.setState((pre) => ({
+            todos: pre.todos.filter((todo) => todo.id !== id),
+        }))
     }
 
     handleAddTodo = (event) => {
         event.preventDefault();
-        const currentTdo = this.state.todo
-        this.setState({
-            todo: [currentTdo, ...this.state.newTodo],
-            newTodo: ''
-        });
+        if (this.state.newTodo === '') return
+        const newTodo = {
+            id: Date.now(),
+            text: this.state.newTodo,
+            completed: false,
+        }
+        this.setState(prevState => ({
+            todos: [...prevState.todos, newTodo],
+            newTodo: '',
+        }))
     }
 
-    handleInputChange = () => {
-
+    handleInputChange = (event) => {
+        this.setState({
+            newTodo: event.target.value
+        })
     }
 }
 
