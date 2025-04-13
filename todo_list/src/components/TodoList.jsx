@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import TodoItem from "./TodoItem";
+import "./TodoList.css"
+
 
 class TodoList extends Component {
-    state = {
-        todos: [],
-        newTodo: '',
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            todos: [],
+            newTodo: '',
+        }
     }
+
     render() {
         return (
             <div className="todo-list">
@@ -22,7 +29,7 @@ class TodoList extends Component {
                     </button>
                 </form>
                 <div className="todo-items">
-                    {this.state.todos.map((todo)=>{
+                    {this.state.todos.map((todo) => {
                         <TodoItem
                             key={todo.id}
                             todo={todo}
@@ -36,10 +43,12 @@ class TodoList extends Component {
         );
     }
 
-    handleEditTodo = () => {}
+    handleEditTodo = () => {
+    }
 
 
-    handleToggleTodo = () => {}
+    handleToggleTodo = () => {
+    }
 
 
     handleDeleteTodo = () => {
@@ -48,10 +57,14 @@ class TodoList extends Component {
 
     handleAddTodo = (event) => {
         event.preventDefault();
-
+        const currentTdo = this.state.todo
+        this.setState({
+            todo: [currentTdo, ...this.state.newTodo],
+            newTodo: ''
+        });
     }
 
-    handleInputChange = ()=> {
+    handleInputChange = () => {
 
     }
 }
