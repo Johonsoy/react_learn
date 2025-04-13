@@ -43,20 +43,21 @@ class TodoList extends Component {
         );
     }
 
+
     handleEditTodo = (id, newText) => {
         this.setState((prevState) => ({
-            todos: prevState.todos.map((todo) => {
+            todos: prevState.todos.map((todo) =>
                 todo.id === id ? {...todo, text: newText} : todo
-            })
+            )
         }))
     }
 
 
     handleToggleTodo = (id) => {
         this.setState((pre) => ({
-            todos: pre.todos.map((todo) => {
+            todos: pre.todos.map((todo) =>
                 todo.id === id ? {...todo, completed: !todo.completed} : todo
-            })
+            )
         }))
     }
 
@@ -75,6 +76,7 @@ class TodoList extends Component {
             text: this.state.newTodo,
             completed: false,
         }
+
         this.setState(prevState => ({
             todos: [...prevState.todos, newTodo],
             newTodo: '',
