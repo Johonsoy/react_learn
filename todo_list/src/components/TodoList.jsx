@@ -13,37 +13,6 @@ class TodoList extends Component {
         }
     }
 
-    render() {
-        return (
-            <div className="todo-list">
-                <form onSubmit={this.handleAddTodo} className="todo-form">
-                    <input
-                        type="text"
-                        value={this.state.newTodo}
-                        onChange={this.handleInputChange}
-                        placeholder="Add a new task...."
-                        className="todo-input"
-                    />
-                    <button type="submit" className="todo-button">
-                        Add
-                    </button>
-                </form>
-                <div className="todo-items">
-                    {this.state.todos.map((todo) => {
-                        <TodoItem
-                            key={todo.id}
-                            todo={todo}
-                            onDelete={this.handleDeleteTodo}
-                            onToggle={this.handleToggleTodo}
-                            onEdit={this.handleEditTodo}
-                        />
-                    })}
-                </div>
-            </div>
-        );
-    }
-
-
     handleEditTodo = (id, newText) => {
         this.setState((prevState) => ({
             todos: prevState.todos.map((todo) =>
@@ -87,6 +56,36 @@ class TodoList extends Component {
         this.setState({
             newTodo: event.target.value
         })
+    }
+
+    render() {
+        return (
+            <div className="todo-list">
+                <form onSubmit={this.handleAddTodo} className="todo-form">
+                    <input
+                        type="text"
+                        value={this.state.newTodo}
+                        onChange={this.handleInputChange}
+                        placeholder="Add a new task...."
+                        className="todo-input"
+                    />
+                    <button type="submit" className="todo-button">
+                        Add
+                    </button>
+                </form>
+                <div className="todo-items">
+                    {this.state.todos.map((todo) => (
+                        <TodoItem
+                            key={todo.id}
+                            todo={todo}
+                            onDelete={this.handleDeleteTodo}
+                            onToggle={this.handleToggleTodo}
+                            onEdit={this.handleEditTodo}
+                        />
+                    ))}
+                </div>
+            </div>
+        );
     }
 }
 

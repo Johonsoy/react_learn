@@ -32,7 +32,7 @@ class TodoItem extends Component {
 
     render() {
         const {todo, onDelete, onToggle} = this.props
-        const {isEditing, editText} = this.props
+        const {isEditing, editText} = this.state
         return (
             <div className={`todo-item ${todo.completed ? 'completed': ''}`}>
                 {
@@ -48,7 +48,11 @@ class TodoItem extends Component {
                             <button type="submit" className="save-button">
                                 Save
                             </button>
-                            <button type="button" className="cancel-button" onClick={this.handleEditToggle}>
+                            <button
+                                type="button"
+                                onClick={this.handleEditToggle}
+                                className="cancel-button"
+                            >
                                 Cancel
                             </button>
                         </form>
