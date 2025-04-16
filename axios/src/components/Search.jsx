@@ -1,57 +1,54 @@
-import React, { useState } from 'react';
+import React, {Component, useState} from 'react';
 
-const App = () => {
-    // 搜索框输入状态
-    const [query, setQuery] = useState('');
-    // 搜索结果
-    const [results, setResults] = useState([]);
 
-    // 模拟搜索结果
-    const sampleResults = [
-        { id: 1, name: 'Item 1', imageUrl: 'https://via.placeholder.com/150' },
-        { id: 2, name: 'Item 2', imageUrl: 'https://via.placeholder.com/150' },
-        { id: 3, name: 'Item 3', imageUrl: 'https://via.placeholder.com/150' },
-        { id: 4, name: 'Item 4', imageUrl: 'https://via.placeholder.com/150' },
-    ];
-
+class  Search extends Component {
     // 处理搜索功能
-    const handleSearch = () => {
+    handleSearch = () => {
+        const sampleResults = [
+            {id: 1, name: 'Item 1', imageUrl: 'https://img2.baidu.com/it/u=1137101923,166953968&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'},
+            {id: 2, name: 'Item 2', imageUrl: 'https://img2.baidu.com/it/u=1137101923,166953968&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'},
+            {id: 3, name: 'Item 3', imageUrl: 'https://img2.baidu.com/it/u=1137101923,166953968&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'},
+            {id: 4, name: 'Item 4', imageUrl: 'https://img2.baidu.com/it/u=1137101923,166953968&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'},
+        ]
         // 这里我们模拟一个搜索结果，实际情况下可以根据输入的 query 过滤数据或者发请求
         const filteredResults = sampleResults.filter(item =>
-            item.name.toLowerCase().includes(query.toLowerCase())
+            item.name.toLowerCase().includes(this.state.query.toLowerCase())
         );
-        setResults(filteredResults);
+        this.props.saveUsers(filteredResults);
     };
 
-    return (
-        <div style={{ padding: '20px' }}>
-            <h1>搜索页面</h1>
-            {/* 搜索框和按钮 */}
-            <div>
-                <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="请输入搜索内容"
-                    style={{ padding: '10px', fontSize: '16px' }}
-                />
-                <button
-                    onClick={handleSearch}
-                    style={{
-                        padding: '10px',
-                        marginLeft: '10px',
-                        fontSize: '16px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    搜索
-                </button>
+    setQuery = (value) => {
+        this.setState({ query: value });
+    }
+
+    render() {
+
+        return (
+            <div style={{padding: '20px'}}>
+                <h1>搜索页面</h1>
+                {/* 搜索框和按钮 */}
+                <div>
+                    <input
+                        type="text"
+                        onChange={(e) => this.setQuery(e.target.value)}
+                        placeholder="请输入搜索内容"
+                        style={{padding: '10px', fontSize: '16px'}}
+                    />
+                    <button
+                        onClick={this.handleSearch}
+                        style={{
+                            padding: '10px',
+                            marginLeft: '10px',
+                            fontSize: '16px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        搜索
+                    </button>
+                </div>
             </div>
+        );
+    }
+}
 
-            {/* 搜索结果展示 */}
-
-        </div>
-    );
-};
-
-export default App;
+export default Search;

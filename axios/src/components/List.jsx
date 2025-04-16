@@ -7,7 +7,7 @@ class List extends Component {
         const {results} = this.props;
         return (
             <div style={{ marginTop: '20px' }}>
-                {results.length > 0 ? (
+                {results && results.length > 0 ? (
                     <ul style={{ listStyleType: 'none', padding: 0 }}>
                         {results.map(result => (
                             <li key={result.id} style={{ marginBottom: '20px' }}>
